@@ -20,6 +20,10 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Data is stored locally, ensuring strong privacy.
 - Direct interface connection without transfer, high-speed output.
 - Multiple models can be managed freely, supporting multimodal image input.
+- Provide a context length warning to prevent unexpected interruptions due to excessive length.
+
+<img width="2760" height="1418" alt="screenshot" src="https://github.com/user-attachments/assets/8a4f2353-cf6f-4bc3-a503-4d2ddf5b87dd" />
+
 
 ## Online Experience
 
