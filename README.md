@@ -12,8 +12,13 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 </div>
 
----
+## Features
+
+- No download required, open and use immediately.
+- 
 
 ## Online Experience
 
-[](https://lynkllm-ce.pages.dev)
+[lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
+
+
