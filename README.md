@@ -8,7 +8,7 @@ A web client that use your own key to chat with AI online in your browser.
 
 by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
 
-**English** | [简体中文]()
+**English** | [简体中文](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/README.CN.md)
 
 </div>
 
