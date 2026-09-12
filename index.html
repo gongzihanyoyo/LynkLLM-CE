@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-theme-mode="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="LynkLLM CE — 纯前端 AI 对话客户端，数据全部保存在本地浏览器。">
+<meta name="format-detection" content="telephone=no">
+<title>LynkLLM CE</title>
+<script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdn.coolcdn.cn/static/bootstrap-icons/1.13.1/css/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/markdown.css">
+</head>
+<body>
+<div id="app-loading" class="boot-loading">
+  <img class="boot-logo" src="assets/img/logo-128.png" alt="">
+  <div class="boot-text">LynkLLM CE</div>
+</div>
+
+<div class="app" id="app" hidden>
+  <!-- ============ 侧边栏 ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="对话列表">
+    <div class="sidebar-head">
+      <button class="icon-btn mobile-only" id="btnSidebarToggle" type="button" title="收起侧边栏" aria-label="收起侧边栏">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="brand">
+        <img class="brand-mark" src="assets/img/logo-64.png" alt="">
+        <span class="brand-name">LynkLLM <em>CE</em></span>
+      </div>
+    </div>
+
+    <div class="sidebar-actions">
+      <button class="new-chat-btn" id="btnNewChat" type="button">
+        <i class="bi bi-plus-lg"></i><span data-i18n="newChat">新建对话</span>
+      </button>
+    </div>
+
+    <div class="search-wrap">
+      <i class="bi bi-search" aria-hidden="true"></i>
+      <input type="search" id="searchInput" class="search-input" placeholder="搜索对话标题" data-i18n-attr="placeholder:searchPlaceholder" autocomplete="off">
+      <button class="icon-btn tiny clear-search" id="btnClearSearch" type="button" hidden aria-label="清除搜索">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <nav class="conv-list" id="convList" aria-label="历史对话"></nav>
+
+    <div class="sidebar-foot">
+      <button class="side-btn" id="btnSettings" type="button">
+        <i class="bi bi-sliders2"></i><span data-i18n="settings">设置</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+  <!-- 拖拽分隔条（仅桌面端） -->
+  <div class="sidebar-resizer" id="sidebarResizer" role="separator" aria-orientation="vertical"
+       aria-label="拖拽调整侧栏宽度" tabindex="0" title="拖拽调整宽度，双击复位"></div>
+
+  <!-- ============ 主区域 ============ -->
+  <main class="main" id="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="btnSidebarOpen" type="button" aria-label="打开侧边栏">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="title-block">
+        <h1 class="conv-title" id="convTitle" title="">LynkLLM CE</h1>
+        <div class="conv-sub" id="convSub"></div>
+      </div>
+    </header>
+
+    <section class="messages" id="messages" aria-live="polite"></section>
+
+    <div class="scroll-bottom-btn" id="btnScrollBottom" type="button" role="button" tabindex="0" hidden aria-label="滚动到底部">
+      <i class="bi bi-arrow-down"></i>
+    </div>
+
+    <!-- ============ 输入区 ============ -->
+    <footer class="composer-wrap">
+      <div class="composer" id="composer">
+        <div class="composer-warn" id="composerWarn" hidden>
+          <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+          <span id="composerWarnText"></span>
+        </div>
+
+        <div class="attachments" id="attachments" hidden></div>
+
+        <div class="composer-input-row">
+          <textarea id="input" class="composer-input" rows="1"
+            placeholder="给 LynkLLM CE 发送消息…" data-i18n-attr="placeholder:inputPlaceholder"
+            autocomplete="off" spellcheck="false"></textarea>
+        </div>
+
+        <div class="composer-bar">
+          <div class="composer-bar-left">
+            <button class="chip-btn" id="btnAttach" type="button" hidden title="上传图片">
+              <i class="bi bi-image"></i>
+            </button>
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+
+            <button class="chip-btn model-chip" id="btnModel" type="button">
+              <i class="bi bi-cpu"></i>
+              <span id="modelChipText">未配置模型</span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+
+            <button class="chip-btn" id="btnThinking" type="button" hidden>
+              <i class="bi bi-lightning-charge"></i>
+              <span id="thinkingChipText">思考</span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+          </div>
+
+          <div class="composer-bar-right">
+            <span class="char-count" id="charCount" hidden></span>
+            <button class="send-btn" id="btnSend" type="button" title="发送" aria-label="发送">
+              <i class="bi bi-arrow-up"></i>
+            </button>
+            <button class="send-btn stop" id="btnStop" type="button" hidden title="停止生成" aria-label="停止生成">
+              <i class="bi bi-stop-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="composer-hint" id="composerHint"></div>
+    </footer>
+  </main>
+</div>
+
+<!-- ============ 归档确认弹窗 ============ -->
+<div class="modal-backdrop" id="confirmBackdrop" hidden>
+  <div class="modal modal-sm" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 class="modal-title" id="confirmTitle">确认</h2>
+      <button class="icon-btn" id="confirmClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-text" id="confirmText"></p>
+      <label class="check-row" id="confirmNoAskWrap" hidden>
+        <input type="checkbox" id="confirmNoAsk"><span id="confirmNoAskLabel">不再询问</span>
+      </label>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="confirmCancel" type="button">取消</button>
+      <button class="btn danger" id="confirmOk" type="button">删除</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 设置弹窗 ============ -->
+<div class="modal-backdrop" id="settingsBackdrop" hidden>
+  <div class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-head">
+      <h2 class="modal-title" id="settingsTitle" data-i18n="settings">设置</h2>
+      <button class="icon-btn" id="settingsClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="general" type="button" role="tab" data-i18n="tabGeneral">常规</button>
+      <button class="tab" data-tab="models" type="button" role="tab" data-i18n="tabModels">模型</button>
+    </div>
+
+    <div class="modal-body tab-panels">
+      <!-- ---- 常规 ---- -->
+      <div class="tab-panel active" data-panel="general">
+        <div class="setting-group">
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-circle-half"></i>
+              <div><div class="sl-title" data-i18n="theme">外观主题</div><div class="sl-desc" data-i18n="themeDesc">深浅色模式</div></div>
+            </div>
+            <div class="segmented" id="segTheme" data-name="theme">
+              <button data-value="light" type="button"><i class="bi bi-sun"></i><span data-i18n="themeLight">浅色</span></button>
+              <button data-value="dark" type="button"><i class="bi bi-moon-stars"></i><span data-i18n="themeDark">深色</span></button>
+              <button data-value="auto" type="button"><i class="bi bi-display"></i><span data-i18n="themeAuto">跟随系统</span></button>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-keyboard"></i>
+              <div><div class="sl-title" data-i18n="enterBehavior">Enter 键行为</div><div class="sl-desc" data-i18n="enterBehaviorDesc">编辑器内按 Enter 与 Shift+Enter 的动作</div></div>
+            </div>
+            <div class="segmented" id="segEnter" data-name="enterBehavior">
+              <button data-value="send" type="button"><span data-i18n="enterSend">Enter 发送</span></button>
+              <button data-value="newline" type="button"><span data-i18n="enterNewline">Enter 换行</span></button>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-translate"></i>
+              <div><div class="sl-title" data-i18n="language">界面语言</div><div class="sl-desc" data-i18n="languageDesc">界面文本的显示语言</div></div>
+            </div>
+            <div class="select-wrap">
+              <select id="selLang" class="select">
+                <option value="auto" data-i18n="langAuto">跟随系统</option>
+                <option value="zh-CN">简体中文</option>
+                <option value="en">English</option>
+              </select>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-tags"></i>
+              <div><div class="sl-title" data-i18n="autoTitle">自动对话标题</div><div class="sl-desc" data-i18n="autoTitleDesc">新对话完成后如何生成标题</div></div>
+            </div>
+            <div class="select-wrap">
+              <select id="selAutoTitle" class="select">
+                <option value="first" data-i18n="autoTitleFirst">第一条消息</option>
+                <option value="chat" data-i18n="autoTitleChat">对话模型总结</option>
+                <option value="model" data-i18n="autoTitleModel">指定模型总结</option>
+              </select>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="setting-row" id="rowTitleModel" hidden>
+            <div class="setting-label">
+              <i class="bi bi-shield-shaded"></i>
+              <div><div class="sl-title" data-i18n="titleModel">标题总结所用模型</div><div class="sl-desc" data-i18n="titleModelDesc">选择用于生成标题的模型</div></div>
+            </div>
+            <div class="select-wrap">
+              <select id="selTitleModel" class="select"></select>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-stars"></i>
+              <div><div class="sl-title" data-i18n="renderRich">增强内容渲染</div><div class="sl-desc" data-i18n="renderRichDesc">渲染 LaTeX 公式与 Mermaid 图表（按需从 CDN 加载，可能略慢）</div></div>
+            </div>
+            <label class="switch"><input type="checkbox" id="swRichRender"><span class="switch-track"><span class="switch-thumb"></span></span></label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-graph-up"></i>
+              <div><div class="sl-title" data-i18n="showTokens">显示 Token 用量</div><div class="sl-desc" data-i18n="showTokensDesc">在每条 AI 回复下方显示输入/输出 Token 详情</div></div>
+            </div>
+            <label class="switch"><input type="checkbox" id="swShowTokens"><span class="switch-track"><span class="switch-thumb"></span></span></label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-window-stack"></i>
+              <div><div class="sl-title" data-i18n="streamOutput">流式输出</div><div class="sl-desc" data-i18n="streamOutputDesc">全局开关，实际是否生效取决于模型配置</div></div>
+            </div>
+            <label class="switch"><input type="checkbox" id="swStream"><span class="switch-track"><span class="switch-thumb"></span></span></label>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="group-title" data-i18n="dataSection">数据</div>
+          <div class="data-stats" id="dataStats"></div>
+          <div class="setting-row danger-row">
+            <div class="setting-label">
+              <i class="bi bi-trash3"></i>
+              <div><div class="sl-title" data-i18n="clearAll">清除所有本地数据</div><div class="sl-desc" data-i18n="clearAllDesc">删除全部对话记录、模型配置与设置，不可恢复</div></div>
+            </div>
+            <button class="btn danger" id="btnClearAll" type="button" data-i18n="clearAllBtn">立即清除</button>
+          </div>
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-bezier2"></i>
+              <div><div class="sl-title" data-i18n="exportData">导出 / 导入配置</div><div class="sl-desc" data-i18n="exportDataDesc">导出为 JSON 文件用于备份，或从备份恢复</div></div>
+            </div>
+            <div class="row-actions">
+              <button class="btn" id="btnExport" type="button" data-i18n="exportBtn">导出</button>
+              <button class="btn" id="btnImport" type="button" data-i18n="importBtn">导入</button>
+              <input type="file" id="importInput" accept="application/json,.json" hidden>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group about-group">
+          <div class="about-line">
+            <img class="brand-mark small" src="assets/img/logo-64.png" alt="">
+            <div>
+              <div class="sl-title">LynkLLM CE</div>
+              <div class="sl-desc" data-i18n="aboutDesc">纯前端 AI 对话客户端 · 所有数据仅保存在本机浏览器</div>
+            </div>
+          </div>
+          <a class="github-link" id="githubLink" href="https://github.com/gongzihanyoyo/LynkLLM-CE"
+             target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-github" aria-hidden="true"></i>
+            <span data-i18n="openSource">开源仓库</span>
+            <span class="github-repo">gongzihanyoyo/LynkLLM-CE</span>
+            <i class="bi bi-box-arrow-up-right github-ext" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- ---- 模型 ---- -->
+      <div class="tab-panel" data-panel="models">
+        <div class="models-head">
+          <div class="sl-desc" data-i18n="modelsDesc">管理你自己的 OpenAI 兼容接入。配置与密钥仅保存在本机浏览器。</div>
+          <button class="btn primary" id="btnAddModel" type="button"><i class="bi bi-plus-lg"></i><span data-i18n="addModel">新增模型</span></button>
+        </div>
+        <div class="model-list" id="modelList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 模型编辑弹窗 ============ -->
+<div class="modal-backdrop stacked" id="modelBackdrop" hidden>
+  <div class="modal modal-md" role="dialog" aria-modal="true" aria-labelledby="modelEditTitle">
+    <div class="modal-head">
+      <h2 class="modal-title" id="modelEditTitle" data-i18n="editModel">编辑模型</h2>
+      <button class="icon-btn" id="modelEditClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="notice">
+        <i class="bi bi-info-circle"></i>
+        <span data-i18n="modelNotice">请确认服务商支持跨域调用（CORS），当前仅支持 OpenAI 兼容格式。</span>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfName" data-i18n="fDisplayName">显示名称</label>
+        <input class="input" id="mfName" type="text" placeholder="例如：DeepSeek 官方">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfBaseUrl">Base URL</label>
+        <input class="input mono" id="mfBaseUrl" type="text" placeholder="https://token.sensenova.cn/v1">
+        <div class="field-hint" data-i18n="fBaseUrlHint">形如 https://host/v1，程序会自动拼接 /chat/completions，并自动去除末尾斜杠</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfKey">API Key</label>
+        <div class="input-with-btn">
+          <input class="input mono" id="mfKey" type="password" placeholder="sk-..." autocomplete="off">
+          <button class="icon-btn" id="btnToggleKey" type="button" title="显示/隐藏"><i class="bi bi-eye"></i></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfModel" data-i18n="fModel">模型</label>
+        <div class="input-with-btn">
+          <input class="input mono" id="mfModel" type="text" list="modelOptions" placeholder="deepseek-flash" autocomplete="off">
+          <button class="icon-btn" id="btnFetchModels" type="button" title="查询可用模型"><i class="bi bi-cloud-arrow-down"></i></button>
+        </div>
+        <datalist id="modelOptions"></datalist>
+        <div class="field-hint" id="fetchModelsHint" data-i18n="fModelHint">点击右侧按钮可从 /models 自动查询可用模型</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfContext" data-i18n="fContext">上下文长度（tokens）</label>
+        <input class="input" id="mfContext" type="number" min="1024" step="1024" placeholder="1000000">
+        <div class="field-hint" data-i18n="fContextHint">仅用于本地估算与提示，不会强制截断</div>
+      </div>
+
+      <div class="field">
+        <div class="field-label" data-i18n="fThinking">思考强度支持列表</div>
+        <div class="check-grid" id="mfThinkingLevels"></div>
+        <div class="field-hint" data-i18n="fThinkingHint">勾选该模型支持的思考强度；全部不勾选表示不支持思考强度切换。第一项为默认值。</div>
+        <div class="field-sub">
+          <button class="btn xs" id="btnThinkingAll" type="button" data-i18n="selectAll">全选</button>
+          <button class="btn xs" id="btnThinkingNone" type="button" data-i18n="selectNone">清空</button>
+          <span class="field-hint inline" data-i18n="fThinkingOrder">勾选顺序即为强度递增顺序</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mfSystem" data-i18n="fSystem">系统提示词</label>
+        <textarea class="input textarea" id="mfSystem" rows="3" placeholder="You are a helpful assistant."></textarea>
+      </div>
+
+      <div class="field-group-title" data-i18n="fCapabilities">能力</div>
+      <div class="toggles">
+        <label class="check-row"><input type="checkbox" id="mfVision"><span data-i18n="fVision">支持图片识别（多模态）</span></label>
+        <label class="check-row"><input type="checkbox" id="mfStream"><span data-i18n="fStream">支持流式输出（SSE）</span></label>
+      </div>
+
+      <div class="test-result" id="testResult" hidden></div>
+    </div>
+    <div class="modal-foot space-between">
+      <button class="btn" id="btnTestConn" type="button"><i class="bi bi-plug"></i><span data-i18n="testConn">连通性测试</span></button>
+      <div class="foot-actions">
+        <button class="btn" id="modelCancel" type="button" data-i18n="cancel">取消</button>
+        <button class="btn primary" id="modelSave" type="button" data-i18n="save">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 通用下拉面板 ============ -->
+<div class="popover-layer" id="popoverLayer" hidden></div>
+
+<!-- ============ Toast ============ -->
+<div class="toast-layer" id="toastLayer" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ============ 图片预览 ============ -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="icon-btn lightbox-close" id="lightboxClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
+  <img id="lightboxImg" alt="预览图片">
+</div>
+
+<!-- ============ HTML 代码块预览 ============ -->
+<div class="modal-backdrop preview-backdrop" id="previewBackdrop" hidden>
+  <div class="preview-modal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="preview-head">
+      <div class="preview-title">
+        <i class="bi bi-window-stack" aria-hidden="true"></i>
+        <span id="previewTitle" data-i18n="htmlPreview">HTML 预览</span>
+      </div>
+      <div class="preview-actions">
+        <button class="btn sm" id="previewRefresh" type="button">
+          <i class="bi bi-arrow-clockwise"></i><span data-i18n="refresh">刷新</span>
+        </button>
+        <button class="btn sm" id="previewCopy" type="button">
+          <i class="bi bi-clipboard"></i><span data-i18n="copy">复制</span>
+        </button>
+        <button class="icon-btn" id="previewClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
+      </div>
+    </div>
+    <div class="preview-body">
+      <iframe id="previewFrame" class="preview-frame" title="HTML 预览"
+        sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads"
+        referrerpolicy="no-referrer"></iframe>
+    </div>
+    <div class="preview-error" id="previewError" hidden>
+      <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+      <span id="previewErrorText"></span>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/markdown.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/conversations.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
