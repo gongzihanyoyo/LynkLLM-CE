@@ -25,6 +25,11 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 [lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
 
+## Precautions
+
+- Need the API endpoint support CORS calls.
+- Currently only OpenAI format is supported; other formats are not available yet.
+
 ## License
 
 [MIT License](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE)
