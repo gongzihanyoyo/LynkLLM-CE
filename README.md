@@ -53,7 +53,6 @@ Based on our actual testing, the following platforms explicitly support CORS cal
 - DeepSeek API
 - Qianwen AI Platform
 - Xiaomi Mimo API
-- Xiaomi Mimo API (Token Plan)
 - Z-AI BigModel
 
 Welcome to add more information about it.
