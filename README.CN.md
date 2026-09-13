@@ -45,3 +45,13 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 - [邮箱 gongzihanyoyo@163.com](mailto:gongzihanyoyo@163.com)
 - [B站 @gongzihanyoyo](https://space.bilibili.com/2104835974)
+
+## 提示
+
+经过我们实测，以下平台明确支持CORS调用：
+
+- DeepSeek API
+- 千问AI平台
+- Xiaomi Mimo API
+
+欢迎补充更多。
