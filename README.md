@@ -17,7 +17,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - No download required, open and use immediately.
 - Data is stored locally, ensuring strong privacy.
 - Direct interface connection without transfer, high-speed output.
-- Multiple models can be managed freely, supporting multimodal image input.
+- Multiple models can be managed freely, supporting image input & output.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
 
 <img width="2760" height="1418" alt="screenshot" src="https://github.com/user-attachments/assets/8a4f2353-cf6f-4bc3-a503-4d2ddf5b87dd" />
@@ -53,5 +53,7 @@ Based on our actual testing, the following platforms explicitly support CORS cal
 - DeepSeek API
 - Qianwen AI Platform
 - Xiaomi Mimo API
+- Xiaomi Mimo API (Token Plan)
+- Z-AI BigModel
 
 Welcome to add more information about it.
