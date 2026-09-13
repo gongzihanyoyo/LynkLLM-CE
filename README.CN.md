@@ -4,7 +4,7 @@
 
 # LynkLLM-CE
 
-一个使用你自己的密钥在浏览器中在线与 AI 聊天的 Web 客户端
+用你自己的Key在浏览器中与AI聊天的Web客户端
 
 by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
 
@@ -17,7 +17,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - 无需下载，打开即用。
 - 数据存储在本地，隐私性强。
 - 直连接口，无中转，高速输出。
-- 自由管理多个模型，支持多模态图片输入。
+- 自由管理多个模型，支持图片输入和输出。
 - 提供上下文长度警告，防止因过长而意外中断。
 
 <img width="2760" height="1418" alt="screenshot" src="https://github.com/user-attachments/assets/8a4f2353-cf6f-4bc3-a503-4d2ddf5b87dd" />
@@ -53,5 +53,6 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - DeepSeek API
 - 千问AI平台
 - Xiaomi Mimo API
+- 智谱 BigModel
 
 欢迎补充更多。
