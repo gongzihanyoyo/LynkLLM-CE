@@ -45,3 +45,13 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 - [Email gongzihanyoyo@163.com](mailto:gongzihanyoyo@163.com)
 - [Bilibili @gongzihanyoyo](https://space.bilibili.com/2104835974)
+
+## Note
+
+Based on our actual testing, the following platforms explicitly support CORS calls:
+
+- DeepSeek API
+- Qianwen AI Platform
+- Xiaomi Mimo API
+
+Welcome to add more information about it.
