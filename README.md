@@ -1,7 +1,5 @@
 <div align="center">
 
-The project is now updating, source code here will be temporary outdated.
-
 <img width="100" height="100" alt="IMG_2437" src="https://github.com/user-attachments/assets/f6576b7d-d669-4e00-878a-893b4ba1de4f" />
 
 # LynkLLM-CE
@@ -20,6 +18,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Data is stored locally, ensuring strong privacy.
 - Direct interface connection without transfer, high-speed output.
 - Multiple models can be managed freely, supporting image input & output.
+- Support access to Tavily, allowing AI to automatically search for information.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
 
 <img width="2760" height="1418" alt="screenshot" src="https://github.com/user-attachments/assets/8a4f2353-cf6f-4bc3-a503-4d2ddf5b87dd" />
@@ -56,5 +55,6 @@ Based on our actual testing, the following platforms explicitly support CORS cal
 - Qianwen AI Platform
 - Xiaomi Mimo API
 - Z-AI BigModel
+- OrcaRouter
 
 Welcome to add more information about it.
