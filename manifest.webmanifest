@@ -1,0 +1,54 @@
+{
+  "name": "LynkLLM CE",
+  "short_name": "LynkLLM CE",
+  "description": "纯前端 AI 对话客户端。支持多模型接入、图片生成、联网搜索，所有数据仅保存在本机浏览器。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#4f6ef7",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "assets/img/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/logo-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "新建对话",
+      "short_name": "新建对话",
+      "url": "./?action=new"
+    },
+    {
+      "name": "设置",
+      "short_name": "设置",
+      "url": "./?action=settings"
+    }
+  ]
+}
