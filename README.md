@@ -21,8 +21,9 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Support access to Tavily, allowing AI to automatically search for information.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
 
-<img width="2760" height="1418" alt="screenshot" src="https://github.com/user-attachments/assets/8a4f2353-cf6f-4bc3-a503-4d2ddf5b87dd" />
+<img width="2800" height="2084" alt="image_1789310195944" src="https://github.com/user-attachments/assets/871df8bf-a0b7-4c4f-ae27-a36b0ef753c2" />
 
+<img width="2800" height="1843" alt="image_1789310204727" src="https://github.com/user-attachments/assets/17815e54-f38c-464c-8088-fb830423e12e" />
 
 ## Online Experience
 
