@@ -4,19 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <meta name="description" content="LynkLLM CE — 纯前端 AI 对话客户端，数据全部保存在本地浏览器。">
 <meta name="format-detection" content="telephone=no">
 <title>LynkLLM CE</title>
-<script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="LynkLLM CE">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="LynkLLM CE">
+<meta name="msapplication-TileImage" content="assets/img/logo-128.png">
+
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/logo-192.png">
+<link rel="icon" type="image/png" sizes="256x256" href="assets/img/logo-256.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/img/logo-512.png">
 <link rel="stylesheet" href="https://cdn.coolcdn.cn/static/bootstrap-icons/1.13.1/css/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/markdown.css">
+<script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
 </head>
 <body>
 <div id="app-loading" class="boot-loading">
@@ -113,9 +127,27 @@
               <i class="bi bi-chevron-up"></i>
             </button>
 
+            <button class="chip-btn" id="btnWebSearch" type="button" hidden>
+              <i class="bi bi-globe2"></i>
+              <span id="webSearchChipText">联网搜索 · 自动</span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+
             <button class="chip-btn" id="btnThinking" type="button" hidden>
               <i class="bi bi-lightning-charge"></i>
               <span id="thinkingChipText">思考</span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+
+            <button class="chip-btn" id="btnImageCount" type="button" hidden>
+              <i class="bi bi-collection"></i>
+              <span id="imageCountChipText">1</span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+
+            <button class="chip-btn" id="btnImageSize" type="button" hidden>
+              <i class="bi bi-aspect-ratio"></i>
+              <span id="imageSizeChipText">1024×1024</span>
               <i class="bi bi-chevron-up"></i>
             </button>
           </div>
@@ -166,6 +198,7 @@
     <div class="tabs" role="tablist">
       <button class="tab active" data-tab="general" type="button" role="tab" data-i18n="tabGeneral">常规</button>
       <button class="tab" data-tab="models" type="button" role="tab" data-i18n="tabModels">模型</button>
+      <button class="tab" data-tab="tavily" type="button" role="tab" data-i18n="tabTavily">Tavily</button>
     </div>
 
     <div class="modal-body tab-panels">
@@ -259,6 +292,26 @@
             </div>
             <label class="switch"><input type="checkbox" id="swStream"><span class="switch-track"><span class="switch-thumb"></span></span></label>
           </div>
+
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-speedometer2"></i>
+              <div><div class="sl-title" data-i18n="streamBatch">流式渲染节流</div><div class="sl-desc" data-i18n="streamBatchDesc">每累计 N 个输出片段才刷新一次界面。输出过快导致页面卡顿时可调大该值（最长 600ms 也会刷新一次）</div></div>
+            </div>
+            <div class="select-wrap">
+              <select id="selStreamBatch" class="select">
+                <option value="1" data-i18n="streamBatch1">1 · 每个片段立即刷新（最流畅）</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="60">60 · 最省性能</option>
+              </select>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
         </div>
 
         <div class="setting-group">
@@ -285,6 +338,21 @@
         </div>
 
         <div class="setting-group about-group">
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-download"></i>
+              <div><div class="sl-title" data-i18n="pwaTitle">安装为应用</div><div class="sl-desc" id="pwaDesc" data-i18n="pwaDesc">安装到桌面 / 主屏幕，以独立窗口离线运行</div></div>
+            </div>
+            <div class="row-actions">
+              <button class="btn primary" id="btnPwaInstall" type="button" hidden>
+                <i class="bi bi-box-arrow-down"></i><span data-i18n="pwaInstallBtn">安装</span>
+              </button>
+              <span class="pwa-status" id="pwaStatus" hidden></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group about-group">
           <div class="about-line">
             <img class="brand-mark small" src="assets/img/logo-64.png" alt="">
             <div>
@@ -299,6 +367,10 @@
             <span class="github-repo">gongzihanyoyo/LynkLLM-CE</span>
             <i class="bi bi-box-arrow-up-right github-ext" aria-hidden="true"></i>
           </a>
+          <div class="app-version">
+            <span data-i18n="version">版本</span>
+            <span id="appVersion">—</span>
+          </div>
         </div>
       </div>
 
@@ -308,7 +380,65 @@
           <div class="sl-desc" data-i18n="modelsDesc">管理你自己的 OpenAI 兼容接入。配置与密钥仅保存在本机浏览器。</div>
           <button class="btn primary" id="btnAddModel" type="button"><i class="bi bi-plus-lg"></i><span data-i18n="addModel">新增模型</span></button>
         </div>
+
+        <div class="search-wrap model-search-wrap">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <input type="search" id="modelSearchInput" class="search-input"
+                 placeholder="搜索模型" data-i18n-attr="placeholder:modelSearchPlaceholder"
+                 autocomplete="off" spellcheck="false">
+          <button class="icon-btn tiny clear-search" id="btnClearModelSearch" type="button" hidden
+                  aria-label="清除搜索" data-i18n-attr="aria-label:clearModelSearch">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="subtabs" id="modelKindTabs" role="tablist">
+          <button class="subtab active" data-kind="all" type="button" role="tab" data-i18n="kindAll">全部</button>
+          <button class="subtab" data-kind="chat" type="button" role="tab" data-i18n="kindChat">对话</button>
+          <button class="subtab" data-kind="image" type="button" role="tab" data-i18n="kindImage">图片</button>
+        </div>
+
         <div class="model-list" id="modelList"></div>
+      </div>
+
+      <!-- ---- Tavily 联网搜索 ---- -->
+      <div class="tab-panel" data-panel="tavily">
+        <div class="notice">
+          <i class="bi bi-info-circle"></i>
+          <span data-i18n="tavilyHint">通过 Tavily 为 AI 提供联网搜索，需要模型支持 Tool Call。</span>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-label">
+            <i class="bi bi-globe2"></i>
+            <div><div class="sl-title">Tavily</div><div class="sl-desc">app.tavily.com</div></div>
+          </div>
+          <a class="btn" id="tavilyHome" href="https://app.tavily.com/home" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-box-arrow-up-right"></i><span data-i18n="tavilyOfficial">前往官网</span>
+          </a>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="tavilyKey" data-i18n="tavilyKey">API Key</label>
+          <div class="input-with-btn">
+            <input class="input mono" id="tavilyKey" type="password" placeholder="tvly-dev-..." autocomplete="off">
+            <button class="icon-btn" id="btnToggleTavilyKey" type="button" title="显示/隐藏"><i class="bi bi-eye"></i></button>
+          </div>
+          <div class="field-hint" data-i18n="tavilyNotice">Key 仅保存在本机浏览器，不会上传到任何服务器。</div>
+        </div>
+
+        <div class="tavily-actions">
+          <button class="btn primary" id="btnTavilySave" type="button"><i class="bi bi-check2"></i><span data-i18n="save">保存</span></button>
+          <button class="btn" id="btnTavilyTest" type="button"><i class="bi bi-plug"></i><span data-i18n="testConn">连通性测试</span></button>
+        </div>
+
+        <div class="test-result" id="tavilyResult" hidden></div>
+
+        <div class="setting-group">
+          <div class="group-title" data-i18n="tavilyKeysTitle">可用参数</div>
+          <div class="sl-desc" data-i18n="tavilyKeysDesc">工具调用时模型可自行设置主题、搜索深度、时间范围、结果条数、域名白/黑名单等参数。</div>
+          <div class="tavily-params" id="tavilyParams"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -325,6 +455,15 @@
       <div class="notice">
         <i class="bi bi-info-circle"></i>
         <span data-i18n="modelNotice">请确认服务商支持跨域调用（CORS），当前仅支持 OpenAI 兼容格式。</span>
+      </div>
+
+      <div class="field">
+        <div class="field-label" data-i18n="fKind">模型类型</div>
+        <div class="segmented full" id="segModelKind" data-name="kind">
+          <button data-value="chat" type="button"><i class="bi bi-chat-dots"></i><span data-i18n="kindChat">对话</span></button>
+          <button data-value="image" type="button"><i class="bi bi-image"></i><span data-i18n="kindImage">图片</span></button>
+        </div>
+        <div class="field-hint" id="kindHint" data-i18n="fKindHintChat">用于文字对话的模型</div>
       </div>
 
       <div class="field">
@@ -349,23 +488,22 @@
       <div class="field">
         <label class="field-label" for="mfModel" data-i18n="fModel">模型</label>
         <div class="input-with-btn">
-          <input class="input mono" id="mfModel" type="text" list="modelOptions" placeholder="deepseek-flash" autocomplete="off">
+          <input class="input mono" id="mfModel" type="text" placeholder="deepseek-flash" autocomplete="off" spellcheck="false">
           <button class="icon-btn" id="btnFetchModels" type="button" title="查询可用模型"><i class="bi bi-cloud-arrow-down"></i></button>
         </div>
-        <datalist id="modelOptions"></datalist>
         <div class="field-hint" id="fetchModelsHint" data-i18n="fModelHint">点击右侧按钮可从 /models 自动查询可用模型</div>
+        <div class="model-choices" id="modelChoices" hidden></div>
       </div>
 
-      <div class="field">
+      <div class="field" id="rowContext">
         <label class="field-label" for="mfContext" data-i18n="fContext">上下文长度（tokens）</label>
         <input class="input" id="mfContext" type="number" min="1024" step="1024" placeholder="1000000">
         <div class="field-hint" data-i18n="fContextHint">仅用于本地估算与提示，不会强制截断</div>
       </div>
 
-      <div class="field">
+      <div class="field" id="rowThinking">
         <div class="field-label" data-i18n="fThinking">思考强度支持列表</div>
         <div class="check-grid" id="mfThinkingLevels"></div>
-        <div class="field-hint" data-i18n="fThinkingHint">勾选该模型支持的思考强度；全部不勾选表示不支持思考强度切换。第一项为默认值。</div>
         <div class="field-sub">
           <button class="btn xs" id="btnThinkingAll" type="button" data-i18n="selectAll">全选</button>
           <button class="btn xs" id="btnThinkingNone" type="button" data-i18n="selectNone">清空</button>
@@ -373,15 +511,16 @@
         </div>
       </div>
 
-      <div class="field">
+      <div class="field" id="rowSystem">
         <label class="field-label" for="mfSystem" data-i18n="fSystem">系统提示词</label>
         <textarea class="input textarea" id="mfSystem" rows="3" placeholder="You are a helpful assistant."></textarea>
       </div>
 
       <div class="field-group-title" data-i18n="fCapabilities">能力</div>
       <div class="toggles">
-        <label class="check-row"><input type="checkbox" id="mfVision"><span data-i18n="fVision">支持图片识别（多模态）</span></label>
-        <label class="check-row"><input type="checkbox" id="mfStream"><span data-i18n="fStream">支持流式输出（SSE）</span></label>
+        <label class="check-row"><input type="checkbox" id="mfVision"><span id="mfVisionLabel" data-i18n="fVision">图片输入</span></label>
+        <label class="check-row" id="rowStream"><input type="checkbox" id="mfStream"><span data-i18n="fStream">支持流式输出（SSE）</span></label>
+        <label class="check-row" id="rowTools"><input type="checkbox" id="mfTools"><span data-i18n="fTools">支持工具调用（Tool Call）</span></label>
       </div>
 
       <div class="test-result" id="testResult" hidden></div>
@@ -404,6 +543,11 @@
 
 <!-- ============ 图片预览 ============ -->
 <div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-bar">
+    <button class="icon-btn lightbox-btn" id="lightboxDownload" type="button" title="下载图片">
+      <i class="bi bi-download"></i><span data-i18n="download">下载</span>
+    </button>
+  </div>
   <button class="icon-btn lightbox-close" id="lightboxClose" type="button" aria-label="关闭"><i class="bi bi-x-lg"></i></button>
   <img id="lightboxImg" alt="预览图片">
 </div>
@@ -443,6 +587,8 @@
 <script src="assets/js/markdown.js"></script>
 <script src="assets/js/api.js"></script>
 <script src="assets/js/ui.js"></script>
+<script src="assets/js/logos.js"></script>
+<script src="assets/js/imagestore.js"></script>
 <script src="assets/js/conversations.js"></script>
 <script src="assets/js/chat.js"></script>
 <script src="assets/js/settings.js"></script>
