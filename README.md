@@ -1,5 +1,7 @@
 <div align="center">
 
+The project is now updating, source code here will be temporary outdated.
+
 <img width="100" height="100" alt="IMG_2437" src="https://github.com/user-attachments/assets/f6576b7d-d669-4e00-878a-893b4ba1de4f" />
 
 # LynkLLM-CE
