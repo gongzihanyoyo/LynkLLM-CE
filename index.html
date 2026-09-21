@@ -169,7 +169,8 @@
 </div>
 
 <!-- ============ 归档确认弹窗 ============ -->
-<div class="modal-backdrop" id="confirmBackdrop" hidden>
+<!-- confirm-layer：确认弹窗永远位于所有弹窗之上（设置 / 模型编辑可能同时打开） -->
+<div class="modal-backdrop confirm-layer" id="confirmBackdrop" hidden>
   <div class="modal modal-sm" role="dialog" aria-modal="true">
     <div class="modal-head">
       <h2 class="modal-title" id="confirmTitle">确认</h2>
@@ -199,6 +200,7 @@
       <button class="tab active" data-tab="general" type="button" role="tab" data-i18n="tabGeneral">常规</button>
       <button class="tab" data-tab="models" type="button" role="tab" data-i18n="tabModels">模型</button>
       <button class="tab" data-tab="tavily" type="button" role="tab" data-i18n="tabTavily">Tavily</button>
+      <button class="tab" data-tab="about" type="button" role="tab" data-i18n="tabAbout">关于</button>
     </div>
 
     <div class="modal-body tab-panels">
@@ -336,42 +338,6 @@
             </div>
           </div>
         </div>
-
-        <div class="setting-group about-group">
-          <div class="setting-row">
-            <div class="setting-label">
-              <i class="bi bi-download"></i>
-              <div><div class="sl-title" data-i18n="pwaTitle">安装为应用</div><div class="sl-desc" id="pwaDesc" data-i18n="pwaDesc">安装到桌面 / 主屏幕，以独立窗口离线运行</div></div>
-            </div>
-            <div class="row-actions">
-              <button class="btn primary" id="btnPwaInstall" type="button" hidden>
-                <i class="bi bi-box-arrow-down"></i><span data-i18n="pwaInstallBtn">安装</span>
-              </button>
-              <span class="pwa-status" id="pwaStatus" hidden></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="setting-group about-group">
-          <div class="about-line">
-            <img class="brand-mark small" src="assets/img/logo-64.png" alt="">
-            <div>
-              <div class="sl-title">LynkLLM CE</div>
-              <div class="sl-desc" data-i18n="aboutDesc">纯前端 AI 对话客户端 · 所有数据仅保存在本机浏览器</div>
-            </div>
-          </div>
-          <a class="github-link" id="githubLink" href="https://github.com/gongzihanyoyo/LynkLLM-CE"
-             target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-github" aria-hidden="true"></i>
-            <span data-i18n="openSource">开源仓库</span>
-            <span class="github-repo">gongzihanyoyo/LynkLLM-CE</span>
-            <i class="bi bi-box-arrow-up-right github-ext" aria-hidden="true"></i>
-          </a>
-          <div class="app-version">
-            <span data-i18n="version">版本</span>
-            <span id="appVersion">—</span>
-          </div>
-        </div>
       </div>
 
       <!-- ---- 模型 ---- -->
@@ -396,6 +362,7 @@
           <button class="subtab active" data-kind="all" type="button" role="tab" data-i18n="kindAll">全部</button>
           <button class="subtab" data-kind="chat" type="button" role="tab" data-i18n="kindChat">对话</button>
           <button class="subtab" data-kind="image" type="button" role="tab" data-i18n="kindImage">图片</button>
+          <button class="subtab" data-kind="tts" type="button" role="tab" data-i18n="kindTts">语音</button>
         </div>
 
         <div class="model-list" id="modelList"></div>
@@ -435,9 +402,59 @@
         <div class="test-result" id="tavilyResult" hidden></div>
 
         <div class="setting-group">
-          <div class="group-title" data-i18n="tavilyKeysTitle">可用参数</div>
-          <div class="sl-desc" data-i18n="tavilyKeysDesc">工具调用时模型可自行设置主题、搜索深度、时间范围、结果条数、域名白/黑名单等参数。</div>
+          <div class="group-title" data-i18n="tavilyManualTitle">手动指定参数</div>
+          <div class="sl-desc" data-i18n="tavilyManualDesc">填写后将在请求中强制生效，且不再交给模型决定；留空则仍由模型在调用时自行指定。</div>
+          <div class="tavily-manual" id="tavilyManual"></div>
+          <div class="tavily-actions">
+            <button class="btn" id="btnTavilyResetParams" type="button">
+              <i class="bi bi-arrow-counterclockwise"></i><span data-i18n="tavilyResetParams">清空手动配置</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="group-title" data-i18n="tavilyKeysTitle">可交给模型决定的参数</div>
+          <div class="sl-desc" data-i18n="tavilyKeysDesc">未手动指定的参数会开放给模型，由它在调用时自行设置；已手动指定的项不会再出现在工具定义里。</div>
           <div class="tavily-params" id="tavilyParams"></div>
+        </div>
+      </div>
+
+      <!-- ---- 关于 ---- -->
+      <div class="tab-panel" data-panel="about">
+        <div class="setting-group about-group">
+          <div class="about-line">
+            <img class="brand-mark small" src="assets/img/logo-64.png" alt="">
+            <div>
+              <div class="sl-title">LynkLLM CE</div>
+              <div class="sl-desc" data-i18n="aboutDesc">纯前端 AI 对话客户端 · 所有数据仅保存在本机浏览器</div>
+            </div>
+          </div>
+          <a class="github-link" id="githubLink" href="https://github.com/gongzihanyoyo/LynkLLM-CE"
+             target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-github" aria-hidden="true"></i>
+            <span data-i18n="openSource">开源仓库</span>
+            <span class="github-repo">gongzihanyoyo/LynkLLM-CE</span>
+            <i class="bi bi-box-arrow-up-right github-ext" aria-hidden="true"></i>
+          </a>
+          <div class="app-version">
+            <span data-i18n="version">版本</span>
+            <span id="appVersion">—</span>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="setting-row">
+            <div class="setting-label">
+              <i class="bi bi-download"></i>
+              <div><div class="sl-title" data-i18n="pwaTitle">安装为应用</div><div class="sl-desc" id="pwaDesc" data-i18n="pwaDesc">安装到桌面 / 主屏幕，以独立窗口离线运行</div></div>
+            </div>
+            <div class="row-actions">
+              <button class="btn primary" id="btnPwaInstall" type="button" hidden>
+                <i class="bi bi-box-arrow-down"></i><span data-i18n="pwaInstallBtn">安装</span>
+              </button>
+              <span class="pwa-status" id="pwaStatus" hidden></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -462,6 +479,7 @@
         <div class="segmented full" id="segModelKind" data-name="kind">
           <button data-value="chat" type="button"><i class="bi bi-chat-dots"></i><span data-i18n="kindChat">对话</span></button>
           <button data-value="image" type="button"><i class="bi bi-image"></i><span data-i18n="kindImage">图片</span></button>
+          <button data-value="tts" type="button"><i class="bi bi-soundwave"></i><span data-i18n="kindTts">语音</span></button>
         </div>
         <div class="field-hint" id="kindHint" data-i18n="fKindHintChat">用于文字对话的模型</div>
       </div>
@@ -473,8 +491,7 @@
 
       <div class="field">
         <label class="field-label" for="mfBaseUrl">Base URL</label>
-        <input class="input mono" id="mfBaseUrl" type="text" placeholder="https://token.sensenova.cn/v1">
-        <div class="field-hint" data-i18n="fBaseUrlHint">形如 https://host/v1，程序会自动拼接 /chat/completions，并自动去除末尾斜杠</div>
+        <input class="input mono" id="mfBaseUrl" type="text" placeholder="https://api.openai.com/v1">
       </div>
 
       <div class="field">
@@ -491,7 +508,7 @@
           <input class="input mono" id="mfModel" type="text" placeholder="deepseek-flash" autocomplete="off" spellcheck="false">
           <button class="icon-btn" id="btnFetchModels" type="button" title="查询可用模型"><i class="bi bi-cloud-arrow-down"></i></button>
         </div>
-        <div class="field-hint" id="fetchModelsHint" data-i18n="fModelHint">点击右侧按钮可从 /models 自动查询可用模型</div>
+        <div class="field-hint" id="fetchModelsHint" data-i18n="fModelHint">点击右侧按钮可自动查询可用模型</div>
         <div class="model-choices" id="modelChoices" hidden></div>
       </div>
 
@@ -516,9 +533,34 @@
         <textarea class="input textarea" id="mfSystem" rows="3" placeholder="You are a helpful assistant."></textarea>
       </div>
 
+      <!-- ---- 语音合成专属字段（kind = tts）---- -->
+      <div id="ttsFields" hidden>
+        <div class="field">
+          <label class="field-label" for="mfVoice" data-i18n="fVoice">音色（voice）</label>
+          <input class="input mono" id="mfVoice" type="text" placeholder="mimo_default" autocomplete="off" spellcheck="false">
+          <div class="field-hint" data-i18n="fVoiceHint">留空则使用服务商的默认音色；点击下方常用音色可快速填入</div>
+          <div class="voice-presets" id="voicePresets"></div>
+        </div>
+
+        <div class="field">
+          <div class="field-label" data-i18n="fAudioFormat">输出格式（format）</div>
+          <div class="select-wrap">
+            <select id="mfAudioFormat" class="select"></select>
+            <i class="bi bi-chevron-down"></i>
+          </div>
+          <div class="field-hint" data-i18n="fAudioFormatHint">PCM 为裸流，程序会在播放前自动包装为 WAV</div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="mfTtsInstruction" data-i18n="fTtsInstruction">朗读指令（风格 / 语气，可选）</label>
+          <textarea class="input textarea" id="mfTtsInstruction" rows="2" placeholder="例如：用自然、温和的语气朗读。"></textarea>
+          <div class="field-hint" data-i18n="fTtsInstructionHint">作为 user 消息发送，用于控制情感与语气</div>
+        </div>
+      </div>
+
       <div class="field-group-title" data-i18n="fCapabilities">能力</div>
       <div class="toggles">
-        <label class="check-row"><input type="checkbox" id="mfVision"><span id="mfVisionLabel" data-i18n="fVision">图片输入</span></label>
+        <label class="check-row" id="rowVision"><input type="checkbox" id="mfVision"><span id="mfVisionLabel" data-i18n="fVision">图片输入</span></label>
         <label class="check-row" id="rowStream"><input type="checkbox" id="mfStream"><span data-i18n="fStream">支持流式输出（SSE）</span></label>
         <label class="check-row" id="rowTools"><input type="checkbox" id="mfTools"><span data-i18n="fTools">支持工具调用（Tool Call）</span></label>
       </div>
@@ -589,6 +631,7 @@
 <script src="assets/js/ui.js"></script>
 <script src="assets/js/logos.js"></script>
 <script src="assets/js/imagestore.js"></script>
+<script src="assets/js/audiostore.js"></script>
 <script src="assets/js/conversations.js"></script>
 <script src="assets/js/chat.js"></script>
 <script src="assets/js/settings.js"></script>
