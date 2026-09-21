@@ -894,6 +894,8 @@ body.resizing * { -webkit-user-select: none !important; user-select: none !impor
   -webkit-backdrop-filter: blur(3px);
 }
 .modal-backdrop.stacked { z-index: 260; }
+/* 确认弹窗必须盖住设置弹窗（200）、模型编辑弹窗（260）与 HTML 预览（320） */
+.modal-backdrop.confirm-layer { z-index: 340; }
 
 /* 关闭动画：先播放退场动画，结束后由 JS 置 hidden */
 .modal-backdrop.closing { animation: fadeOut .19s ease forwards; pointer-events: none; }
@@ -1796,3 +1798,83 @@ body.lb-open { overflow: hidden; }
   background: var(--bg-soft); border: 1px solid var(--border);
 }
 .pwa-status.ok { color: var(--success); border-color: var(--success-soft); background: var(--success-soft); }
+
+/* ==========================================================================
+   语音合成（TTS）：播放块 / 音色选择 / 朗读入口
+   ========================================================================== */
+.msg-audios { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.msg-audio {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  padding: 8px 10px 9px;
+}
+.msg-audio.is-pending { border-style: dashed; border-color: var(--brand); background: var(--brand-soft); }
+.msg-audio.is-missing { border-color: var(--warning); opacity: .7; }
+
+.msg-audio-head {
+  display: flex; align-items: center; gap: 7px;
+  font-size: var(--fs-xs); color: var(--text-muted);
+}
+.msg-audio-head > i.bi-soundwave { color: var(--brand); flex-shrink: 0; }
+.msg-audio-label { font-weight: 600; color: var(--text-soft); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-audio-meta { margin-left: auto; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.msg-audio-btn {
+  display: grid; place-items: center; width: 24px; height: 24px;
+  border-radius: 6px; border: 0; background: transparent;
+  color: var(--text-muted); cursor: pointer; flex-shrink: 0;
+}
+.msg-audio-btn:hover { background: var(--bg-hover); color: var(--text); }
+
+.msg-audio-player { display: block; width: 100%; height: 34px; margin-top: 8px; }
+.msg-audio-loading { padding: 10px 0 2px; }
+.msg-audio-text {
+  margin-top: 7px; font-size: var(--fs-xs); color: var(--text-muted);
+  line-height: 1.55; word-break: break-word;
+}
+
+/* 朗读按钮 */
+.msg-action.speak > i.bi { color: var(--brand); }
+.msg-action.speak:hover { background: var(--brand-soft); color: var(--brand-text); }
+.msg-action.speak:hover > i.bi { color: var(--brand-text); }
+
+/* 模型编辑弹窗里的下拉是块级满宽字段，需覆盖 .select 的 max-width，
+   否则箭头（绝对定位在 .select-wrap 右缘）会与下拉框分离 */
+#mfAudioFormat { width: 100%; max-width: none; }
+
+/* 音色快捷填入 */
+.voice-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.voice-chip {
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--bg-soft);
+  color: var(--text-soft); font-size: var(--fs-xs);
+  font-family: var(--font-mono); cursor: pointer;
+}
+.voice-chip:hover { border-color: var(--border-strong); color: var(--text); }
+.voice-chip.active { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-text); font-weight: 600; }
+
+/* ==========================================================================
+   Tavily 手动指定参数
+   ========================================================================== */
+.tavily-manual { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.tm-row { display: flex; align-items: center; gap: 10px; }
+.tm-label {
+  flex: 0 0 172px; min-width: 0;
+  font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-soft);
+  word-break: break-all;
+}
+.tm-ctrl { flex: 1; min-width: 0; }
+.tm-ctrl .input, .tm-ctrl .select-wrap, .tm-ctrl .select { width: 100%; }
+/* 覆盖 .select 的 max-width，让下拉与同行的其它输入框对齐 */
+.tm-ctrl .select { max-width: none; }
+
+/* 已被手动指定、不再交给模型的参数 */
+.tp-chip.is-forced { border-color: var(--brand); background: var(--brand-soft); }
+.tp-chip.is-forced .tp-name { color: var(--brand-text); font-weight: 600; }
+.tp-lock { font-size: 10px; color: var(--brand); margin-left: 3px; }
+
+@media (max-width: 560px) {
+  .tm-row { flex-direction: column; align-items: stretch; gap: 4px; }
+  .tm-label { flex: 0 0 auto; font-size: 11px; }
+  .msg-audio-player { height: 40px; }
+}
