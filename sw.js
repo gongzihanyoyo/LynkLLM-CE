@@ -10,7 +10,7 @@
    ========================================================================== */
 'use strict';
 
-const CACHE_VERSION = 'v1.1.26092001';
+const CACHE_VERSION = 'v1.1.26092301';
 const CACHE = 'lynkllm-ce-' + CACHE_VERSION;
 
 /** 预缓存的应用外壳（相对 Service Worker 所在目录） */
@@ -26,6 +26,8 @@ const SHELL = [
   './assets/js/api.js',
   './assets/js/ui.js',
   './assets/js/logos.js',
+  './assets/js/zip.js',
+  './assets/js/personalize.js',
   './assets/js/imagestore.js',
   './assets/js/audiostore.js',
   './assets/js/conversations.js',
