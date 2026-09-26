@@ -30,7 +30,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 [lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
 
-*\*The version on this online demo site might be more up-to-date than the code on Github.*
+*\* The version on this online demo site might be more up-to-date than the code on Github, so you can experience new features ~~and new bugs~~ here.*
 
 ## Precautions
 
