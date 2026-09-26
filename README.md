@@ -20,6 +20,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Multiple models can be managed freely, supporting image input & output.
 - Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
+- Provides MCP connection support to expand additional capabilities.
 - Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS limits.
 
 <img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
@@ -30,7 +31,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 [lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
 
-*\* The version on this online demo site might be more up-to-date than the code on Github, so you can experience new features ~~and new bugs~~ here.*
+*\* The version on this online demo site might be more up-to-date than the code on GitHub, so you can experience new features ~~and new bugs~~ here.*
 
 ## Precautions
 
