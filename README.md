@@ -22,9 +22,9 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
 - Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS limits.
 
-<img width="2800" height="2084" alt="image_1789310195944" src="https://github.com/user-attachments/assets/871df8bf-a0b7-4c4f-ae27-a36b0ef753c2" />
-
-<img width="2800" height="1843" alt="image_1789310204727" src="https://github.com/user-attachments/assets/17815e54-f38c-464c-8088-fb830423e12e" />
+<img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
+<img width="2800" height="1479" alt="ScreenShot-2" src="https://github.com/user-attachments/assets/990cfb16-28af-41ff-be36-427973b85f52" />
+<img width="2800" height="1482" alt="ScreenShot-3" src="https://github.com/user-attachments/assets/e8d9a39c-b407-40a5-8454-d904e0421371" />
 
 ## Online Demo
 
