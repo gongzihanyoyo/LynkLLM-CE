@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="100" height="100" alt="character_transparent" src="https://github.com/user-attachments/assets/a801019d-c62a-4c86-adf6-61c1c47f6735" />
+<img width="100" height="100" alt="Logo" src="https://github.com/user-attachments/assets/a801019d-c62a-4c86-adf6-61c1c47f6735" />
 
 # LynkLLM-CE
 
@@ -26,9 +26,11 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 <img width="2800" height="1843" alt="image_1789310204727" src="https://github.com/user-attachments/assets/17815e54-f38c-464c-8088-fb830423e12e" />
 
-## Online Experience
+## Online Demo
 
 [lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
+
+*\*The version on this online demo site might be more up-to-date than the code on Github.*
 
 ## Precautions
 
