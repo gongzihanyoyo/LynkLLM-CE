@@ -1,10 +1,10 @@
 <div align="center">
 
-<img width="100" height="100" alt="IMG_2437" src="https://github.com/user-attachments/assets/f6576b7d-d669-4e00-878a-893b4ba1de4f" />
+<img width="100" height="100" alt="character_transparent" src="https://github.com/user-attachments/assets/a801019d-c62a-4c86-adf6-61c1c47f6735" />
 
 # LynkLLM-CE
 
-A web client that use your own key to chat with AI online in your browser.
+A lightweight BYOK AI chat web client.
 
 by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
 
@@ -18,8 +18,9 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Data is stored locally, ensuring strong privacy.
 - Direct interface connection without transfer, high-speed output.
 - Multiple models can be managed freely, supporting image input & output.
-- Support access to Tavily, allowing AI to automatically search for information.
+- Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
+- Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS limits.
 
 <img width="2800" height="2084" alt="image_1789310195944" src="https://github.com/user-attachments/assets/871df8bf-a0b7-4c4f-ae27-a36b0ef753c2" />
 
@@ -31,7 +32,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 ## Precautions
 
-- Need the API endpoint support CORS calls.
+- For some APIs with CORS restrictions, please [install the enhancer script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js).
 - Currently only OpenAI format is supported; other formats are not available yet.
 
 ## License
