@@ -53,12 +53,12 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 ## Note
 
-Based on our actual testing, the following platforms explicitly support CORS calls:
+Based on our actual testing, the following platforms explicitly support CORS calls, so you can use them without enhancerd script:
 
-- DeepSeek API
-- Qianwen AI Platform
-- Xiaomi Mimo API
-- Z-AI BigModel
+- [DeepSeek API](https://platform.deepseek.com)
+- [Qianwen AI Platform](https://www.qianwenai.com)
+- [Xiaomi MiMo API](https://platform.xiaomimimo.com)
+- [Z-AI BigModel](https://www.bigmodel.cn)
 - OrcaRouter
 
 Welcome to add more information about it.
