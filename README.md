@@ -6,6 +6,9 @@
 
 A lightweight BYOK AI chat web client.
 
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
+
 by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
 
 **English** | [简体中文](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/README.CN.md)
@@ -20,7 +23,8 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - Multiple models can be managed freely, supporting image input & output.
 - Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
 - Provide a context length warning to prevent unexpected interruptions due to excessive length.
-- Provides MCP connection support to expand additional capabilities.
+- Provide MCP connection support to expand additional capabilities.
+- Supports Python calls (powered by Pyodide), providing AI with local support for complex calculations.
 - Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS limits.
 
 <img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
