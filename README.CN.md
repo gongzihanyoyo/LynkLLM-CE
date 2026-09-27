@@ -6,6 +6,9 @@
 
 轻量级BYOK式AI聊天网页客户端
 
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
+
 by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
 
 [English](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/README.md) | **简体中文**
@@ -21,6 +24,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - 支持接入[Tavily](https://www.tavily.com)，让AI自动搜索信息。
 - 提供上下文长度警告，防止因长度过长导致意外中断。
 - 提供MCP连接支持，扩展更多能力。
+- 支持Python调用（由Pyodide支持），为AI提供本地复杂运算支持。
 - 提供[油猴增强脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)以绕过CORS限制。
 
 <img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
