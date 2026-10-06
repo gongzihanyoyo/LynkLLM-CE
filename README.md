@@ -26,7 +26,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - [x] Multiple models can be managed freely, supporting Chat, Image and TTS.
 - [x] Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
 - [x] Provide a context length warning to prevent unexpected interruptions due to excessive length.
-- [x] Supports Python calls (powered by Pyodide), providing AI with local support for complex calculations.
+- [x] Support Python calls (powered by Pyodide), providing AI with local support for complex calculations.
 - [x] Support the free import and management of multiple SKILL.md, enabling the model to operate according to established rules.
 - [x] Provide MCP connection support to expand additional capabilities.
 - [x] Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS or mixed content limits.
