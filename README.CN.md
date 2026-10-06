@@ -4,7 +4,7 @@
 
 # LynkLLM-CE
 
-轻量级 BYOK AI 聊天网页客户端
+轻量级 BYOK 式 AI 聊天网页客户端
 
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
@@ -21,11 +21,11 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [x] 数据存储于本地，隐私性强。
 - [x] 直连接口不中转，高速输出。
 - [x] 支持 OpenAI Chat、OpenAI Responses 和 Anthropic 三大 API 格式。
-- [x] 可自由管理多个模型，支持对话、图像、TTS模型接入。
+- [x] 自由管理多个模型，支持对话、图像、TTS模型接入。
 - [x] 支持接入 [Tavily](https://www.tavily.com)，让 AI 自动搜索信息。
 - [x] 提供上下文长度警告，防止因过长导致意外中断。
 - [x] 支持 Python 调用（由 Pyodide 提供支持），为 AI 提供本地复杂计算支持。
-- [x] 支持自由导入和管理多个 SKILL.md，使模型能够按照既定规则运行。
+- [x] 自由导入和管理多个 SKILL.md，让模型按规矩办事。
 - [x] 提供 MCP 连接支持，扩展更多能力。
 - [x] 提供[油猴脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)以绕过 CORS 或混合内容限制。
 
@@ -49,7 +49,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 
 ## 注意事项
 
-- 对于部分存在 CORS 或混合内容限制的 API，请[安装增强脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)。
+- 对于部分 CORS 或混合内容限制，请[安装增强脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)。
 
 ## 许可证
 
@@ -67,7 +67,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 
 ## 备注
 
-根据我们的实际测试，以下平台明确支持 CORS 调用，因此你无需使用增强脚本即可使用：
+根据我们的实际测试，以下平台明确支持 CORS 调用，因此无需增强脚本即可使用：
 
 - [DeepSeek API](https://platform.deepseek.com)
 - [千问 AI 平台](https://www.qianwenai.com)
@@ -75,4 +75,4 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [Z-AI BigModel](https://www.bigmodel.cn)
 - OrcaRouter
 
-欢迎补充更多相关信息。
+欢迎补充更多相关。
