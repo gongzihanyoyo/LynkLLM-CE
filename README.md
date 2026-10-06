@@ -1,4 +1,4 @@
-> The content on this page has been translated using AI ~~and by poor English~~ .
+> The content on this page has been translated by AI.
 
 <div align="center">
 
@@ -11,7 +11,7 @@ A lightweight BYOK AI chat web client.
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
 
-by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash**
+by [**Jitaimei Studio**](https://www.jitaimei.top)
 
 **English** | [简体中文](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/README.CN.md)
 
@@ -31,9 +31,17 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 - [x] Provide MCP connection support to expand additional capabilities.
 - [x] Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS or mixed content limits.
 
-<img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
-<img width="2800" height="1479" alt="ScreenShot-2" src="https://github.com/user-attachments/assets/990cfb16-28af-41ff-be36-427973b85f52" />
-<img width="2800" height="1482" alt="ScreenShot-3" src="https://github.com/user-attachments/assets/e8d9a39c-b407-40a5-8454-d904e0421371" />
+<img width="2800" height="1486" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/122329ee-9072-4cf4-a026-5f770d26b3ca" />
+
+<details>
+<summary>See more screenshots</summary>
+
+<img width="2800" height="1489" alt="ScreenShot-2" src="https://github.com/user-attachments/assets/d4446130-aca4-44a3-a547-b53208c66725" />
+<img width="2800" height="1486" alt="ScreenShot-3" src="https://github.com/user-attachments/assets/ef466ed2-56ad-46fd-ad54-7aedbe09e8ba" />
+<img width="2800" height="1490" alt="ScreenShot-4" src="https://github.com/user-attachments/assets/88ce93e2-1121-4e65-9048-be6d5a4b72c6" />
+<img width="2800" height="1489" alt="ScreenShot-5" src="https://github.com/user-attachments/assets/99ab757f-06e9-4ead-a58d-0c5b9f4a9447" />
+
+</details>
 
 ## Online Demo
 
