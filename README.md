@@ -1,4 +1,4 @@
-> The content on this page has been translated using AI.
+> The content on this page has been translated using AI ~~and by poor English~~ .
 
 <div align="center">
 
