@@ -20,8 +20,8 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [x] 无需下载，打开即用。
 - [x] 数据存储于本地，隐私性强。
 - [x] 直连接口不中转，高速输出。
-- [x] 支持 OpenAI Chat、OpenAI Responses 和 Anthropic API 格式。
-- [x] 可自由管理多个模型，支持 Chat、Image 和 TTS。
+- [x] 支持 OpenAI Chat、OpenAI Responses 和 Anthropic 三大 API 格式。
+- [x] 可自由管理多个模型，支持对话、图像、TTS模型接入。
 - [x] 支持接入 [Tavily](https://www.tavily.com)，让 AI 自动搜索信息。
 - [x] 提供上下文长度警告，防止因过长导致意外中断。
 - [x] 支持 Python 调用（由 Pyodide 提供支持），为 AI 提供本地复杂计算支持。
@@ -45,7 +45,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 
 [lynkllm-ce.pages.dev](https://lynkllm-ce.pages.dev)
 
-*\* 此演示站点上的版本可能比 GitHub 上的代码更新，因此你可以在这里体验到新功能 ~~和新bug~~ 。*
+*\* 此演示站点上的版本可能比 GitHub 上的代码更新，因此可以在这里体验到新功能 ~~和新bug~~ 。*
 
 ## 注意事项
 
@@ -58,7 +58,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 ## 免责声明
 
 - 我们仅提供对话界面框架，不对 AI 生成的内容负责。
-- 在使用 AI 生成的内容时，请自觉遵守所在地区的法律法规。
+- 在使用 AI 生成内容时，请自觉遵守所在地区的法律法规。
 
 ## 联系我们
 
@@ -72,7 +72,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [DeepSeek API](https://platform.deepseek.com)
 - [千问 AI 平台](https://www.qianwenai.com)
 - [小米 MiMo API](https://platform.xiaomimimo.com)
-- [Z-AI 大模型](https://www.bigmodel.cn)
+- [Z-AI BigModel](https://www.bigmodel.cn)
 - OrcaRouter
 
 欢迎补充更多相关信息。
