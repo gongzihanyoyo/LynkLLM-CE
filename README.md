@@ -1,3 +1,5 @@
+> The content on this page has been translated using AI.
+
 <div align="center">
 
 <img width="100" height="100" alt="Logo" src="https://github.com/user-attachments/assets/a801019d-c62a-4c86-adf6-61c1c47f6735" />
@@ -17,15 +19,17 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 ## Features
 
-- No download required, open and use immediately.
-- Data is stored locally, ensuring strong privacy.
-- Direct interface connection without transfer, high-speed output.
-- Multiple models can be managed freely, supporting image input & output.
-- Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
-- Provide a context length warning to prevent unexpected interruptions due to excessive length.
-- Provide MCP connection support to expand additional capabilities.
-- Supports Python calls (powered by Pyodide), providing AI with local support for complex calculations.
-- Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS limits.
+- [x] No download required, open and use immediately.
+- [x] Data is stored locally, ensuring strong privacy.
+- [x] Direct interface connection without transfer, high-speed output.
+- [x] Support OpenAI Chat, OpenAI Responses and Anthropic API formats.
+- [x] Multiple models can be managed freely, supporting Chat, Image and TTS.
+- [x] Support access to [Tavily](https://www.tavily.com), allowing AI to automatically search for information.
+- [x] Provide a context length warning to prevent unexpected interruptions due to excessive length.
+- [x] Supports Python calls (powered by Pyodide), providing AI with local support for complex calculations.
+- [x] Support the free import and management of multiple SKILL.md, enabling the model to operate according to established rules.
+- [x] Provide MCP connection support to expand additional capabilities.
+- [x] Provide a [Tampermonkey script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js) to go around the CORS or mixed content limits.
 
 <img width="2800" height="1477" alt="ScreenShot-1" src="https://github.com/user-attachments/assets/40e40069-9b62-4137-a6f1-1ce908212652" />
 <img width="2800" height="1479" alt="ScreenShot-2" src="https://github.com/user-attachments/assets/990cfb16-28af-41ff-be36-427973b85f52" />
@@ -39,8 +43,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 ## Precautions
 
-- For some APIs with CORS restrictions, please [install the enhancer script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js).
-- Currently only OpenAI format is supported; other formats are not available yet.
+- For some APIs with CORS or mixed content limits, please [install the enhancer script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js).
 
 ## License
 
@@ -58,7 +61,7 @@ by [**Jitaimei Studio™**](https://www.jitaimei.top) with **DeepSeek-V4.1-Flash
 
 ## Note
 
-Based on our actual testing, the following platforms explicitly support CORS calls, so you can use them without enhancerd script:
+Based on our actual testing, the following platforms explicitly support CORS calls, so you can use them without enhancer script:
 
 - [DeepSeek API](https://platform.deepseek.com)
 - [Qianwen AI Platform](https://www.qianwenai.com)
