@@ -52,8 +52,8 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 ## Precautions
 
 - For some APIs with CORS or mixed content limits, please [install the enhancer script](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js).
-
 - We have included a script from [`busuanzi.cc`](https://www.busuanzi.cc) in [`index.html`](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/index.html) to collect visitor statistics (no private information will be uploaded). If you mind, please self-host and remove the relevant code.
+- When exporting a single conversation as a Markdown file, your images will be anonymously uploaded to [Boltp.com](https://www.boltp.com) for free hosting for 30 days (if the conversation contains image data).
 
 ## License
 
