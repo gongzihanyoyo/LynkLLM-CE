@@ -51,7 +51,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 
 - 对于部分 CORS 或混合内容限制，请[安装增强脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)。
 - 我们在 [`index.html`](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/index.html) 中设置了来自 [`busuanzi.cc`](https://www.busuanzi.cc)（不蒜子统计）的脚本用于统计访客数据（不会上传隐私信息）。如果您介意，请自行私有部署并移除相关代码。
-- 导出单个对话为Markdown文件时，您的图片将被匿名上传至[闪电图床](https://www.boltp.com)免费托管30天。
+- 导出单个对话为Markdown文件时，您的图片将被匿名上传至[闪电图床](https://www.boltp.com)免费托管30天（如果有图片的话）。
 
 ## 许可证
 
