@@ -21,10 +21,10 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [x] 数据存储于本地，隐私性强。
 - [x] 直连接口不中转，高速输出。
 - [x] 支持 OpenAI Chat、OpenAI Responses 和 Anthropic 三大 API 格式。
-- [x] 自由管理多个模型，支持对话、图像、TTS模型接入。
+- [x] 自由管理多个模型，支持对话、图像、TTS 模型接入。
 - [x] 支持接入 [Tavily](https://www.tavily.com)，让 AI 自动搜索信息。
 - [x] 提供上下文长度警告，防止因过长导致意外中断。
-- [x] 支持 Python 调用（由 Pyodide 提供支持），为 AI 提供本地复杂计算支持。
+- [x] 支持 Python 调用（由 Pyodide 支持），为 AI 提供本地复杂计算支持。
 - [x] 自由导入和管理多个 SKILL.md，让模型按规矩办事。
 - [x] 提供 MCP 连接支持，扩展更多能力。
 - [x] 提供[油猴脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)以绕过 CORS 或混合内容限制。
@@ -50,6 +50,8 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 ## 注意事项
 
 - 对于部分 CORS 或混合内容限制，请[安装增强脚本](https://www.tampermonkey.net/script_installation.php#url=https://lynkllm-ce.pages.dev/LynkLLM-CE-Enhancer.user.js)。
+- 我们在 [`index.html`](https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/index.html) 中设置了来自 [`busuanzi.cc`](https://www.busuanzi.cc)（不蒜子统计）的脚本用于统计访客数据（不会上传隐私信息）。如果您介意，请自行私有部署并移除相关代码。
+- 导出单个对话为Markdown文件时，您的图片将被匿名上传至[闪电图床](https://www.boltp.com)免费托管30天。
 
 ## 许可证
 
@@ -72,7 +74,7 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [DeepSeek API](https://platform.deepseek.com)
 - [千问 AI 平台](https://www.qianwenai.com)
 - [小米 MiMo API](https://platform.xiaomimimo.com)
-- [Z-AI BigModel](https://www.bigmodel.cn)
+- [智谱 BigModel](https://www.bigmodel.cn)
 - OrcaRouter
 
 欢迎补充更多相关。
