@@ -6,7 +6,7 @@
 
 轻量级 BYOK 式 AI 聊天网页客户端
 
-<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="MIT License" /></a>
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
 
 by [**Jitaimei Studio**](https://www.jitaimei.top)
@@ -76,5 +76,6 @@ by [**Jitaimei Studio**](https://www.jitaimei.top)
 - [小米 MiMo API](https://platform.xiaomimimo.com)
 - [智谱 BigModel](https://www.bigmodel.cn)
 - OrcaRouter
+- Demon Route
 
-欢迎补充更多相关。
+欢迎补充更多相关信息。
