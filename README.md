@@ -1,5 +1,3 @@
-> The content on this page was translated by AI.
-
 <div align="center">
 
 <img width="100" height="100" alt="Logo" src="https://github.com/user-attachments/assets/a801019d-c62a-4c86-adf6-61c1c47f6735" />
@@ -8,7 +6,7 @@
 
 A lightweight BYOK AI chat web client.
 
-<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="License" /></a>
+<a href="https://github.com/gongzihanyoyo/LynkLLM-CE/blob/main/LICENSE"><img src="https://img.shields.io/github/license/gongzihanyoyo/LynkLLM-CE" alt="MIT License" /></a>
 <a href="https://github.com/gongzihanyoyo/LynkLLM-CE/releases"><img src="https://img.shields.io/github/release/gongzihanyoyo/LynkLLM-CE" alt="Latest" /></a>
 
 by [**Jitaimei Studio**](https://www.jitaimei.top)
@@ -78,5 +76,6 @@ Based on our actual testing, the following platforms explicitly support CORS cal
 - [Xiaomi MiMo API](https://platform.xiaomimimo.com)
 - [Z-AI BigModel](https://www.bigmodel.cn)
 - OrcaRouter
+- Demon Route
 
 Welcome to add more information about it.
